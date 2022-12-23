@@ -15,9 +15,10 @@ class AddCategoryDialog extends StatefulWidget {
 }
 
 class _AddCategoryDialogState extends State<AddCategoryDialog> {
-  late final FocusNode focusText = FocusNode()..addListener(() {
-    setState(() {});
-  });
+  late final FocusNode focusText = FocusNode()
+    ..addListener(() {
+      setState(() {});
+    });
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String? nameCategory;
@@ -58,7 +59,8 @@ class _AddCategoryDialogState extends State<AddCategoryDialog> {
             decoration: InputDecoration(
               labelText: 'Название',
               labelStyle: TextStyle(
-                  color: focusText.hasFocus ? customColorViolet : customColorGrey),
+                  color:
+                      focusText.hasFocus ? customColorViolet : customColorGrey),
               focusedBorder: styleBorderFocus,
               enabledBorder: styleBorderEnable,
             ),
@@ -123,9 +125,9 @@ class _AddCategoryDialogState extends State<AddCategoryDialog> {
           ElevatedButton(
             key: const Key('buttonWait'),
             style: ElevatedButton.styleFrom(
+              foregroundColor: customColorWhite,
+              backgroundColor: customColorViolet,
               minimumSize: const Size(double.infinity, 50.0),
-              primary: customColorViolet,
-              onPrimary: customColorWhite,
               textStyle: const TextStyle(fontSize: 17),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -133,7 +135,8 @@ class _AddCategoryDialogState extends State<AddCategoryDialog> {
             ),
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                BlocProvider.of<CostsBloc>(context).add(AddCategoryRequested(nameCategory!, colorCategory));
+                BlocProvider.of<CostsBloc>(context)
+                    .add(AddCategoryRequested(nameCategory!, colorCategory));
                 Navigator.of(context).pop();
               }
             },

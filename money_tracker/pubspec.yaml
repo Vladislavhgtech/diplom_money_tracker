@@ -51,6 +51,10 @@ dependencies:
   authentication: ^0.0.1
   firebase_app_installations: ^0.2.1+6
   firebase_database: ^10.0.7
+  firebase_auth_mocks: ^0.9.2
+  flutter_driver:
+    sdk: flutter
+  test: ^1.21.4
   #intl: ^0.18.0
 
 dev_dependencies:

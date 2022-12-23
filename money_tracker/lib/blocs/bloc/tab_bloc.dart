@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Bloc;
 
 import '../../models/app_tab.dart';
 import '../events/tab_event.dart';

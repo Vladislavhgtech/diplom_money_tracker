@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:mat_month_picker_dialog/mat_month_picker_dialog.dart';
 
 import '../blocs/bloc/costs_bloc.dart';
@@ -17,7 +18,10 @@ import 'category_card.dart';
 import 'loading_indicator.dart';
 
 class CostsPage extends StatelessWidget {
-  CostsPage({Key? key, required this.date}) : super(key: key);
+  CostsPage({
+    Key? key,
+    required this.date,
+  }) : super(key: key);
 
   final DateTime date;
 
@@ -64,7 +68,8 @@ class CostsPage extends StatelessWidget {
                   lastDate: DateTime(2100),
                   locale: const Locale('ru'),
                 ))!;
-                BlocProvider.of<CostsBloc>(context).add(SetDateRequested(newDate));
+                BlocProvider.of<CostsBloc>(context)
+                    .add(SetDateRequested(newDate));
               },
               child: Text(
                   '${upperfirst(DateFormat.MMMM('ru').format(state.date))} ${upperfirst(DateFormat.y('ru').format(state.date))}'),
@@ -87,8 +92,10 @@ class CostsPage extends StatelessWidget {
                   color: customColorGrey,
                   child: Padding(
                     padding: const EdgeInsets.all(30.0),
-                    child: BlocBuilder<CostsBloc, CostsState>(builder: (context, state) {
-                      BlocProvider.of<CostsBloc>(context).add(UpdateDataRequested());
+                    child: BlocBuilder<CostsBloc, CostsState>(
+                        builder: (context, state) {
+                      BlocProvider.of<CostsBloc>(context)
+                          .add(UpdateDataRequested());
                       return state.isLoading
                           ? const Center(
                               child: LoadingIndicator(),
@@ -102,8 +109,10 @@ class CostsPage extends StatelessWidget {
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: BlocBuilder<CostsBloc, CostsState>(builder: (context, state) {
-                    BlocProvider.of<CostsBloc>(context).add(UpdateDataRequested());
+                  child: BlocBuilder<CostsBloc, CostsState>(
+                      builder: (context, state) {
+                    BlocProvider.of<CostsBloc>(context)
+                        .add(UpdateDataRequested());
                     return state.isLoading
                         ? const Center(
                             child: LoadingIndicator(),
@@ -114,8 +123,7 @@ class CostsPage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return CategoryCard(
                                   category: state.categories[index],
-                                  date: state.date
-                              );
+                                  date: state.date);
                             },
                           );
                   }),
@@ -152,8 +160,7 @@ class CostsPage extends StatelessWidget {
       if (mapCosts[item.category] == null) {
         mapCosts.addAll({item.category: item.sum});
       } else {
-        mapCosts[item.category] =
-            (mapCosts[item.category] ?? 0) + item.sum;
+        mapCosts[item.category] = (mapCosts[item.category] ?? 0) + item.sum;
       }
     }
     if (mapCosts.isEmpty) {

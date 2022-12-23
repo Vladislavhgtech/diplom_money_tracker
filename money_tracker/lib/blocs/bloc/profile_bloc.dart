@@ -1,12 +1,17 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Bloc;
 
 import '../events/profile_event.dart';
 import '../states/profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc():super(const ProfileState(isSave: false, isLoading: false, imageFile: '')) {
+  ProfileBloc()
+      : super(const ProfileState(
+            isSave: false, isLoading: false, imageFile: '')) {
     on<ProfileRequested>((event, emit) async {
-      emit(ProfileState(isSave: event.isSave, isLoading: event.isLoading, imageFile: event.imageFile));
+      emit(ProfileState(
+          isSave: event.isSave,
+          isLoading: event.isLoading,
+          imageFile: event.imageFile));
     });
   }
 }

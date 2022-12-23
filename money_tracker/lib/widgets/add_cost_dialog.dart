@@ -17,9 +17,10 @@ class AddCostDialog extends StatefulWidget {
 }
 
 class _AddCostDialogState extends State<AddCostDialog> {
-  late final FocusNode focusCost = FocusNode()..addListener(() {
-    setState(() {});
-  });
+  late final FocusNode focusCost = FocusNode()
+    ..addListener(() {
+      setState(() {});
+    });
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late DateTime date;
   String? sum;
@@ -86,7 +87,9 @@ class _AddCostDialogState extends State<AddCostDialog> {
             focusNode: focusCost,
             decoration: InputDecoration(
               labelText: 'Введите сумму',
-              labelStyle: TextStyle(color: focusCost.hasFocus ? customColorViolet : customColorGrey),
+              labelStyle: TextStyle(
+                  color:
+                      focusCost.hasFocus ? customColorViolet : customColorGrey),
               focusedBorder: styleBorderFocus,
               enabledBorder: styleBorderEnable,
             ),
@@ -108,9 +111,9 @@ class _AddCostDialogState extends State<AddCostDialog> {
           ElevatedButton(
             key: const Key('buttonWait'),
             style: ElevatedButton.styleFrom(
+              foregroundColor: customColorWhite,
+              backgroundColor: customColorViolet,
               minimumSize: const Size(double.infinity, 50.0),
-              primary: customColorViolet,
-              onPrimary: customColorWhite,
               textStyle: const TextStyle(fontSize: 17),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -118,7 +121,8 @@ class _AddCostDialogState extends State<AddCostDialog> {
             ),
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                BlocProvider.of<CostsBloc>(context).add(AddCostRequested(double.parse(sum!), date, widget.category));
+                BlocProvider.of<CostsBloc>(context).add(AddCostRequested(
+                    double.parse(sum!), date, widget.category));
                 Navigator.of(context).pop();
               }
             },

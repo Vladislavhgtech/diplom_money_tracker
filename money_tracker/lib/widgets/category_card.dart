@@ -12,7 +12,8 @@ import '../styles/colors.dart';
 import 'add_cost_dialog.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({Key? key, required this.category, required this.date}) : super(key: key);
+  const CategoryCard({Key? key, required this.category, required this.date})
+      : super(key: key);
   final Category category;
   final DateTime date;
 
@@ -81,7 +82,8 @@ class CategoryCard extends StatelessWidget {
                   _addCost(context, category);
                 },
                 onLongPress: () {
-                  BlocProvider.of<CostsBloc>(context).add(FlagIsDeleteCategoryRequested(category));
+                  BlocProvider.of<CostsBloc>(context)
+                      .add(FlagIsDeleteCategoryRequested(category));
                 },
               ),
             ),
@@ -126,9 +128,9 @@ class CategoryCard extends StatelessWidget {
                           ElevatedButton(
                             key: const Key('buttonWait'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: customColorWhite,
                               minimumSize: const Size(double.infinity, 50.0),
-                              primary: customColorViolet,
-                              onPrimary: customColorWhite,
+                              backgroundColor: customColorViolet,
                               textStyle: const TextStyle(fontSize: 17),
                               shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -137,7 +139,8 @@ class CategoryCard extends StatelessWidget {
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
-                              BlocProvider.of<CostsBloc>(context).add(DeleteCategoryRequested(category));
+                              BlocProvider.of<CostsBloc>(context)
+                                  .add(DeleteCategoryRequested(category));
                             },
                             child: const Text('Подтвердить'),
                           ),
@@ -160,9 +163,9 @@ class CategoryCard extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: customColorDelete,
                   minimumSize: const Size(80, 70),
-                  primary: customColorDelete,
-                  onPrimary: Colors.white,
                   textStyle: const TextStyle(
                     fontSize: 15.0,
                   ),

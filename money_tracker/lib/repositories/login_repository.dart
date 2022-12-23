@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:money_tracker/models/exception_login.dart';
-import '../firebase_options.dart';
 
 class LoginRepository {
   LoginRepository({required this.firebase});

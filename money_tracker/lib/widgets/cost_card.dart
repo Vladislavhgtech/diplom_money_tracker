@@ -14,8 +14,7 @@ class CostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CostsBloc, CostsState>(builder: (context, state)
-    {
+    return BlocBuilder<CostsBloc, CostsState>(builder: (context, state) {
       return Stack(
         key: UniqueKey(),
         children: [
@@ -36,14 +35,14 @@ class CostCard extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  DateFormat('dd MMMM yyyy / HH:mm', 'ru').format(
-                      cost.date),
+                  DateFormat('dd MMMM yyyy / HH:mm', 'ru').format(cost.date),
                   style: const TextStyle(
                     fontSize: 12,
                   ),
                 ),
                 onLongPress: () {
-                  BlocProvider.of<CostsBloc>(context).add(FlagIsDeleteCostRequested(cost));
+                  BlocProvider.of<CostsBloc>(context)
+                      .add(FlagIsDeleteCostRequested(cost));
                 },
               ),
             ),
@@ -58,7 +57,8 @@ class CostCard extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Удалить данные о расходе? ',
+                        title: Text(
+                          'Удалить данные о расходе? ',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: customColorBlack,
@@ -70,27 +70,26 @@ class CostCard extends StatelessWidget {
                           ElevatedButton(
                             key: const Key('buttonWait'),
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: customColorWhite,
+                              backgroundColor: customColorViolet,
                               minimumSize: const Size(double.infinity, 50.0),
-                              primary: customColorViolet,
-                              onPrimary: customColorWhite,
                               textStyle: const TextStyle(fontSize: 17),
                               shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10.0)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
                               ),
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
-                              BlocProvider.of<CostsBloc>(context).add(DeleteCostRequested(cost));
+                              BlocProvider.of<CostsBloc>(context)
+                                  .add(DeleteCostRequested(cost));
                             },
                             child: const Text('Подтвердить'),
                           ),
                           Align(
                             alignment: Alignment.center,
                             child: TextButton(
-                              onPressed: Navigator
-                                  .of(context)
-                                  .pop,
+                              onPressed: Navigator.of(context).pop,
                               child: const Text(
                                 'Отмена',
                                 style: TextStyle(
@@ -106,9 +105,9 @@ class CostCard extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: customColorDelete,
                   minimumSize: const Size(80, 70),
-                  primary: customColorDelete,
-                  onPrimary: Colors.white,
                   textStyle: const TextStyle(
                     fontSize: 15.0,
                   ),
